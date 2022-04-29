@@ -13,14 +13,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+//Routes for UsersController methods
 
-$router->get('/usuarios', 'UsuarioController@index');
+$router->post('/users', ['middleware' => 'auth', 'uses' => 'UsersController@newUser']);
 
-$router->get('/usuarios/{id}', 'UsuarioController@consultar');
+$router->get('/users/{username}', ['middleware' => 'auth', 'uses' => 'UsersController@userLogIn']);
 
-$router->delete('/usuarios/{id}', 'UsuarioController@eliminar');
-
-$router->post('/usuarios', 'UsuarioController@registrar');
+$router->delete('/usuarios/{id}', ['middleware' => 'auth', 'uses' => 'UsuarioController@eliminar' ]);

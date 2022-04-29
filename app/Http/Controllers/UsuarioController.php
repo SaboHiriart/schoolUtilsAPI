@@ -10,23 +10,6 @@ class UsuarioController extends Controller{
         return response()->json($datosUsuario);
     }
 
-    public function registrar(Request $request){
-        $datosUsuario = new usuario;
-        if($request->hasFile('image_route')){
-            $nombreArchivoOriginal = $request -> file('image_route') -> getClientOriginalName();
-            $nuevoNombre = "Usuario.jpg";
-            $carpetaDestino = './upload/userImage/';
-            $request -> file('image_route')->move($carpetaDestino, $nuevoNombre);
-            $datosUsuario->name = $request->name;
-            $datosUsuario->email = $request->email;
-            $datosUsuario->password = $request->password;
-            $datosUsuario->image_route = ltrim($carpetaDestino, '.').$nuevoNombre;
-    
-            $datosUsuario->save();
-        }
-        return response()->json($request);
-    }
-
     public function consultar($id){
         $dataUsuarios = new Usuario;
         $datosEncontrados  = $dataUsuarios->find($id);
