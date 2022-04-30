@@ -26,7 +26,7 @@ class UsersController extends Controller{
 
     public function userLogIn($username){
         $usersData = new users;
-        $user =  $usersData->where('username', $username);
+        $user =  $usersData->where('username', '=', $username)->get();
         return response()->json($user);
     }
 }
