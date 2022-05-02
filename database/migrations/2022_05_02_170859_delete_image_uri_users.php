@@ -13,7 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::rename('usuarios', 'users');
+        Schema::table('users', function (Blueprint $table) {
+            $table -> dropColumn('image_route');;
+        });
     }
 
     /**
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        //
     }
 };
